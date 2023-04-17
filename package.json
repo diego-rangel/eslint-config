@@ -1,7 +1,7 @@
 {
   "name": "@diegorangel/eslint-config",
   "version": "1.2.0",
-  "private": false,
+  "private": true,
   "description": "ESLint configuration used by Diego Rangel",
   "main": "index.js",
   "license": "MIT",
