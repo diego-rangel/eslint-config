@@ -21,7 +21,8 @@ module.exports = {
   plugins: [
     'react',
     'jsx-a11y',
-    '@typescript-eslint'
+    'simple-import-sort',
+    '@typescript-eslint',
   ],
   rules: {
     'prettier/prettier': ["error", {
@@ -47,6 +48,28 @@ module.exports = {
     'jsx-a11y/aria-unsupported-elements': 'warn',
     'jsx-a11y/role-has-required-aria-props': 'warn',
     'jsx-a11y/role-supports-aria-props': 'warn',
+    'simple-import-sort/exports': 'warn',
+    'simple-import-sort/imports': [
+      'warn',
+      {
+        groups: [
+          // Side effect imports.
+          ['^\\u0000'],
+          // Packages `react` related packages come first.
+          ['^react', '^@?\\w'],
+          // Internal packages.
+          ['^(@prism)(/.*|$)'],
+          // Environment variables
+          ['^(@env)(/.*|$)'],
+          // Parent imports. Put `..` last.
+          ['^\\.\\.(?!/?$)', '^\\.\\./?$'],
+          // Other relative imports. Put same-folder imports and `.` last.
+          ['^\\./(?=.*/)(?!/?$)', '^\\.(?!/?$)', '^\\./?$'],
+          // Style imports.
+          ['^.+\\.?(css)$']
+        ]
+      }
+    ]
   },
   settings: {
     react: {
